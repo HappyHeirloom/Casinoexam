@@ -1,0 +1,390 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+a {
+	text-decoration: none;
+	color:inherit;
+}
+body {
+	font-family:'Open Sans',sans-serif;
+	margin:0;
+}
+.contain {
+	width:100%;
+}
+.contain.game {
+	height:calc(100% - 60px);
+	background:#1B1B24;
+	display:flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+
+}
+.contain.name {
+	height:100%;
+		background:#1B1B24;
+		display:flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+}
+.contain.shop {
+	background:#FFF;
+	color:#1B1B24 !important;
+	height:600px;
+}
+.shop .header {
+	width:100%;
+	text-align:center;
+}
+.flexrow {
+	display:flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: row;
+	width:100%;
+}
+.flexrow a {
+	color:#FFF !important;
+	text-decoration: none !important;
+
+}
+.fa-flash, {
+	color:yellow !important;
+}
+.user_count .fa-users {
+	margin-right:2.5px;
+}
+.total_value {
+	color:yellow;
+}
+.flash {
+	display:inline-block;
+}
+.flexrow.ui {
+	height:100px;
+}
+.flexrow.options {
+	width:65% !important;
+}
+.flexrow .pastResults {
+	height:30px;
+	margin-bottom:50px;
+	margin-top:50px;
+	display:flex;
+	flex-direction: row;
+	align-items: flex-end;
+	justify-content: flex-end;
+	width:33%;
+
+}
+.flexrow .xd {
+	width:33%;
+	float:left;
+}
+.flexrow .countdown {
+	color:#FFF;
+	float:left;
+	width:33%;
+	size:24px;
+	margin-right:25px;
+	text-align:center;
+}
+.bets {
+	height:auto;
+	overflow-y:overlay;
+	margin-top:1px;
+	width:100%;
+	color:rgba(181, 186, 187,1);
+	border-collapse: collapse;
+}
+.bets td {
+	vertical-align: middle;
+}
+
+.case .new {
+    max-width: 100%;
+    height: 68px;
+    z-index: -1;
+    background-image: url('../img/roulette_roll.png');
+    background-repeat: repeat-x;
+    background-position: 0px 0px;
+    position: relative;
+    margin: 0px auto;
+}
+.case {
+    z-index: 1;
+    position: relative;
+    background: #fafafa;
+    width: 1200px;
+}
+#pointer {
+    width: 3px;
+    background: #ff0;
+    position: absolute;
+    left: 50%;
+    top: 0px;
+    height: 100%;
+}
+.entry {
+	background:rgba(0, 0, 0, 0.04);
+	width:100%;
+}
+.entry .name {
+    padding-left: 6px;
+    width: 60%;
+    overflow: hidden;
+    font-size: 16px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.entry .table_bet_amount {
+    width: 100%;
+    font-size: 14px;
+    text-align: right;
+    padding-right: 10px;
+}
+.entry:nth-child(odd) {
+	background:rgba(255, 255, 255, 0.012);
+}
+.pastResult {
+	min-width:31px;
+	height:30px;
+	border-radius:17px;
+	border:2px solid #FFF;
+	align-items: center;
+	justify-content: center;
+	display:flex;
+	color:#FFF;
+	margin-right:10px;
+}
+.pastResult.BLACK {
+	background-color:#000;
+}
+.pastResult.RED {
+	background-color:#D83D42;
+}
+.pastResult.GREEN {
+	background-color:#07ab54;
+}
+.button {
+	text-align:center;
+	width:200px;
+	height:42px;
+	background:#D83D42;
+	color:#FFF;
+	display:flex;
+	align-items:center;
+	justify-content: center;
+	font-size:24px;
+	border:2px solid #000;
+}
+.betamount {
+	margin-right:4px;
+	width:200px;
+	line-height:40px;
+	font-size:25px;
+	padding-left:5px;
+	background:#1f1f23;
+	border:2px solid white;
+	color:#FFF;
+}
+.betui {
+	width:80px;
+	height:44px;
+	background:#000;
+	display:flex;
+	align-items:center;
+	color:#FFF;
+	justify-content: center;
+	border-bottom:2px solid #FFF;
+	margin-right:4px;
+}
+.gamebox {
+	width:500px;
+	height:800px;
+	background:#2c2c3a;
+	border:2px solid #7b7b9c;
+}
+.topbar {
+	display:flex;
+	align-items:center;
+	color:#FFF;
+	justify-content: center;
+	width:100%;
+	height:60px;
+	background:#1B1B24;
+	border-bottom:solid 2px #FFF;
+}
+.topbar span {
+	margin-right:5px;
+}
+.betoptions {
+	height:80px;
+	width:100%;
+	display:flex;
+	align-items:center;
+	color:#FFF;
+	justify-content: center;
+	margin-bottom:15px;
+}
+.flexoption {
+	width:30%;
+	height:70%;
+  	margin-right: 60px;		
+
+}
+.amount {
+	margin-top:7.5;
+	margin-bottom:15px;	
+	display:inline-block;
+	color:yellow;	
+}
+.amount_row {
+	width:100%;
+	text-align:center;
+	color:yellow;
+}
+.meta {
+    position: absolute;
+    right: 10px;
+    top: 3px;
+    font-size: 15px;
+    opacity: 0.9;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+.int {
+	display:inline-block;
+}
+.red .meta {
+	color:#D83D42;
+}
+.black .meta  {
+	color:rgba(181, 186, 187,1);
+}
+.green .meta {
+	color:#07ab54;	
+}
+.flexrow.allbets {
+	height:50%;
+	width:65%;
+}
+.flexrow.allbets, .flexrow.options {
+	min-width:600px;
+}
+.bets tr {
+	line-height: 30px; 
+	padding:5px;
+}
+.allbets .flexoption {
+	height:100%;
+}
+.allbets_header {
+	width:calc(100% - 8px);
+	margin-top:15px;
+	border-bottom:4px solid;
+	margin:0 auto;
+	color:#FFF;
+	padding-left:4px;
+	padding-right:4px;
+}
+.user_count {
+	display:inline-block;
+}
+.total_value {
+	margin-left:auto;
+	float:right;
+	display:inline-block;
+}
+.red .allbets_header {
+	border-color:#D83D42;
+}
+.green .allbets_header {
+		border-color:#07ab54;	
+}
+.black .allbets_header {
+		border-color:rgba(181, 186, 187,1);;
+}
+.top_bet {
+	height:75px;
+	border:2px solid;
+	display:flex;
+	justify-content: center;
+	align-items: center;
+	position:relative;
+}
+.red .top_bet {
+	border-color:#D83D42;
+}
+.black .top_bet {
+	border-color:rgba(181, 186, 187,1);;
+}
+.green .top_bet {
+	border-color:#07ab54;	
+}
+.optionbutton {
+
+	border-radius:5px;			
+	width:100%;
+	height:80%;
+  	display:flex;
+  	justify-content: center;
+  	align-items:center;
+}
+
+.red .optionbutton {
+	background:#D83D42;
+}
+.green .optionbutton {
+	background:#07ab54;
+}
+.bottomarrow {
+	position: absolute;
+	bottom:0;
+	width:100%;
+	text-align:center;
+	margin-bottom:50px;
+	color:#FFF;
+	font-size:24px;
+}
+.black .optionbutton {
+	background:#000;
+}
+.flexoption:nth-child(0n+3) {
+	margin-right:0px !important;
+}
+.buttonrow {
+	margin-top:25px;
+	height:100px;
+}
+.half {
+	width:50%;
+	display:inline-block;
+}
+.shop:first-child {
+	width:calc(50% - 30px) !important;	
+	padding-left:30px;
+}
+.inventory {
+	float:right;
+}
+.item {
+
+	width:125px;
+	height:125px;
+	border:1px solid #000;
+	margin-right:20px;
+	border-radius:62.5px;
+	position: relative;
+	display:inline-block;
+	background-size: cover;
+    background-position: center;
+    margin-bottom:20px;
+	}
+.item_price {
+	bottom:0;
+	height:40px;
+	width:100%;
+	position: absolute;
+	text-align:center;
+}

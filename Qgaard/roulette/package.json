@@ -1,0 +1,21 @@
+{
+  "name": "gamblingxd",
+  "version": "0.0.1",
+  "description": "my first socket.io app",
+  "dependencies": {
+    "crypto": "0.0.3",
+    "express": "^4.15.3",
+    "express-session": "^1.15.3",
+    "fs": "0.0.1-security",
+    "handlebars": "^4.0.10",
+    "locale": "^0.1.0",
+    "moment": "^2.18.1",
+    "mysql": "^2.13.0",
+    "path": "^0.12.7",
+    "socket.io": "^2.0.2",
+    "steam": "^1.4.0",
+    "steam-login": "^0.1.5",
+    "steam-tradeoffers": "^3.1.0",
+    "uuid": "^3.0.1"
+  }
+}

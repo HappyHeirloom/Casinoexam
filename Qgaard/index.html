@@ -1,0 +1,95 @@
+<html>
+<head>
+ <script
+			  src="https://code.jquery.com/jquery-3.2.1.min.js"
+			  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+			  crossorigin="anonymous"></script>
+
+<style>
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+a {
+	text-decoration: none;
+	color:inherit;
+}
+body {
+	background:#1B1B24;
+	font-family:'Open Sans',sans-serif;
+}
+.wrapper {
+	display:flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	height:100%;
+	width:100%;
+}
+.button {
+	text-align:center;
+	width:400px;
+	height:100px;
+	background:#D83D42;
+	color:#FFF;
+	display:flex;
+	align-items:center;
+	justify-content: center;
+	font-size:24px;
+	border:2px solid #000;
+}
+</style>
+</head>
+<body>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-60001021-7', 'auto');
+  ga('send', 'pageview');
+
+</script>
+<div class="wrapper">
+	<a href="#"><div class="button">
+	ROLL
+	</div></a>
+</div>
+
+<script>
+
+var active = false;
+$(".button").click(function(){
+	if(active == false) {
+	active = true;
+	var result = getResult();
+	changeButton(result);
+	window.setTimeout(restorebutton,2000);
+}
+});
+
+function getResult() {
+var number = Math.floor(Math.random() * (14 - 0 +1)) + 0;
+if(number == 0) {
+	return ["GREEN","#07ab54"];
+}
+if(number > 0 && number <= 7) {
+	return ["RED","#D83D42"];
+}
+if(number > 7 && number <= 14) {
+	return ["BLACK","#000"];
+}
+}
+function changeButton(array) {
+	$(".button").text(array[0]);
+	$(".button").css("background",array[1]);
+	$(".button").css("border-color",array[1]);
+}
+function restorebutton() {
+	$(".button").text("ROLL");
+	$(".button").css("background","#D83D42");
+	$(".button").css("border-color","#000");
+
+	active = false;
+}
+</script>
+</body>
+</html>

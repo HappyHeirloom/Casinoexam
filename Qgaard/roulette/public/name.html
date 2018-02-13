@@ -1,0 +1,43 @@
+<html>
+
+
+<head>
+<link rel="stylesheet" href="assets/css/game.css">
+ <script
+			  src="https://code.jquery.com/jquery-3.2.1.min.js"
+			  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+			  crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.2/socket.io.js"></script>
+  <script src="assets/js/core.js"></script>
+</head>
+
+<body>
+<script>
+$(document).ready(function(){
+ 	var socket = io();
+	$(".button").click(function() {
+		var username = $(".username").val();
+		if(username != "") {
+			socket.emit('signin', username, function (data) {
+  				console.log(data); // data will be 'woot'
+  				setCookie("user",data,7);
+  				window.location.replace("../");
+			});
+		}
+
+	});
+});
+</script>
+
+<div class="container name">
+	<div class="flexrow">
+		<input type="text" style="width:375px;" class="betamount username" placeholder="Please enter your name :)">
+	</div>
+	<div class="flexrow">
+		<div style="margin-top:20px" class="button">
+			GO
+		</div>
+	</div>
+
+</body>
+</html>

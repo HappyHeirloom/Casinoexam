@@ -1,0 +1,530 @@
+<html>
+<head>
+ <script
+			  src="https://code.jquery.com/jquery-3.2.1.min.js"
+			  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+			  crossorigin="anonymous"></script>
+			  <script
+			  src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+			  integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
+			  crossorigin="anonymous"></script>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="assets/css/game.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.2/socket.io.js"></script>
+<script src="assets/js/core.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<script>
+	var socket = io();
+	socket.on('penis', function(data) {
+		console.log(data);
+	});
+	socket.on('progress', function (data) {
+		$(".countdown").text("Spinning in "+data.countdown+" seconds");
+		if(data.countdown == 0 || active == true) {
+			$(".countdown").text("Spinning!");
+		}
+	});
+	socket.on('error', function(data) {
+		customAlert(data.message,"danger",8000);
+	});
+	socket.on('user_count', function(data) {
+		customAlert(data.count,"success",3000);
+	});
+</script>
+</head>
+<body>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-60001021-7', 'auto');
+  ga('send', 'pageview');
+
+</script>
+<div class="topbar">
+
+	<span class="currency"><i style="color:yellow" class="fa fa-flash" aria-hidden="true"></i></span><div class="money">
+
+	</div>
+</div>
+<div class="contain game">
+
+	<div class="flexrow">
+		<div class="xd">
+
+		</div>
+		<div class="countdown">
+
+		</div>
+		<div class="pastResults"></div>
+	</div>
+	<div class="flexrow">
+		<div id="case" class="case">
+	<div id="case new" class="case new" style="background-position: 0px 0px;">
+			<div id="pointer"></div>
+			<div id="counter">
+			</div>
+	</div>
+	</div>
+	</div>	
+	<div class="flexrow ui">
+		<input class="betamount" type="text" value=0 /><div class="betui" name=1>+1</div><div class="betui" name=10>+10</div><div class="betui" name=100>+100</div><div class="betui" name=1000>+1k</div><div class="betui" name=half>1/2</div><a href="#"><div class="betui" name=max>MAX</div><a href="#">
+			<!--<div class="button">
+				ROLL
+			</div>-->
+		</a>
+	</div>
+
+	<div class="flexrow options">
+		<div class="betoptions">
+			<div class="flexoption red">
+				<a href="#"><div class="optionbutton">
+					RED
+				</div></a>
+				<div class="amount_row">
+					<div class="flash">
+						<i class="fa fa-flash" aria-hidden="true"></i>
+					</div>
+					<div class="amount">
+						0
+					</div>
+				</div>
+			</div>
+			<div class="flexoption green">
+				<a href="#"><div class="optionbutton">
+					GREEN
+				</div></a>
+				<div class="amount_row">
+					<div class="flash">
+						<i class="fa fa-flash" aria-hidden="true"></i>
+					</div>
+					<div class="amount">
+						0
+					</div>
+				</div>
+			</div>
+			<div class="flexoption black">
+				<a href="#"><div class="optionbutton">
+					BLACK
+				</div></a>
+				<div class="amount_row">
+					<div class="flash">
+						<i class="fa fa-flash" aria-hidden="true"></i>
+					</div>
+					<div class="amount">
+						0
+					</div>
+				</div>
+			</div>
+		</div>	
+	</div>
+	<div class="flexrow allbets">
+		<div class="flexoption red">
+			<div class="top_bet">
+				<div class="meta">TOP RED</div>
+				<div class="top_user"></div>
+			</div>
+			<div class="allbets_header">
+				<div class="user_count"><i class="fa fa-users " aria-hidden="true"></i>0</div>
+				<div class="total_value"><i style="margin-right:2.5px" class="fa fa-flash" aria-hidden="true"></i><div class="int">0</div></div>
+			</div>
+			<table class="bets">
+				<tbody>
+				</tbody>
+
+			</table>
+		</div>
+		<div class="flexoption green">
+			<div class="top_bet">
+				<div class="meta">TOP GREEN</div>
+				<div class="top_user"></div>
+			</div>
+			<div class="allbets_header">
+				<div class="user_count"><i class="fa fa-users " aria-hidden="true"></i>0</div>
+				<div class="total_value"><i style="margin-right:2.5px" class="fa fa-flash" aria-hidden="true"></i><div class="int">0</div></div>
+			</div>
+			<table class="bets">
+				<tbody>
+				</tbody>
+
+			</table>
+
+		</div>
+		<div class="flexoption black">
+			<div class="top_bet">
+				<div class="meta">TOP BLACK</div>
+				<div class="top_user"></div>
+			</div>
+			<div class="allbets_header">
+				<div class="user_count"><i class="fa fa-users " aria-hidden="true"></i>0</div>
+				<div class="total_value"><i style="margin-right:2.5px" class="fa fa-flash" aria-hidden="true"></i><div class="int">0</div></div>
+			</div>
+			<table class="bets">
+				<tbody>
+				</tbody>
+			</table>
+
+		</div>
+
+
+	</div>
+
+
+	<!---->
+	<div class="bottomarrow"><i class="fa fa-angle-down" aria-hidden="true"></i></div>
+</div>
+<div class="contain shop">
+	<div class="half shop">
+		<h1>Shop</h1>
+	</div>
+	<div class="half inventory">
+		<h1>Inventory</h1>
+	</div>
+</div>
+<script>
+var money;
+var active = false;
+var UUID;
+var betArray = [];
+var allBets = [];
+var pastResults = [];
+var soup;
+var currentNum = 11;
+var animation_time = 7000;
+var roulette_scroll = new Audio("https://gamdom.com/build/roulette_sound-d260def73b0d3e126b04ac3b5cf31b3f.mp3");
+var catalog = [
+[0,"",500,"XD.jpg"],
+[1,"",2000,"XD.jpg"],
+[0,"",1500,"XD.jpg"],
+[0,"",350,"XD.jpg"],
+[0,"",5000,"XD.jpg"],
+[0,"",10000,"XD.jpg"],
+];
+var inventory = [];
+var result;
+$(document).ready(function(){
+	socket.on("gamestate",function(data) {
+		console.log(data);
+		active = data.active;
+		if(active == true){
+	 		$(".countdown").text("Spinning!");
+		}
+		if("result" in data) {
+			result=data;
+		}
+		if(data.reveal_result) {
+			showResult();
+		}
+		gameActive();
+		console.log("gamestate");
+	if(data.pastResults != "")
+		pastResults = data.pastResults;
+		addResult();	
+	});
+	socket.on("bet_valid", function(data) {
+		insertBet(data);
+	});
+	socket.emit("active_bets",function(data){
+		insertActiveBets(data);
+	});
+	socket.on("game_result",function(data){
+		showResult(data);
+	});
+	socket.on("clear_bets",function(data){
+		restorebutton();
+	});
+	socket.on("authenticated",function(data){
+		console.log(data);
+	});
+
+	if(getCookie("user") == "null" || getCookie("user") == "") {
+		window.location.replace("signin");
+	}else{
+		UUID = getCookie("user");		
+	}
+	requestFunds();
+	fillShop();
+
+	$(".money").text(money);	
+});
+
+$(".betoptions .flexoption").click(function(){
+	var color_picked = ($(this).attr('class').split(' ')[1]).toUpperCase();
+	switch(color_picked){
+		case "RED":
+			color_picked = 0;
+			break;
+		case "BLACK":
+			color_picked = 1;
+			break;
+		case "GREEN":
+			color_picked = 2;
+			break;
+	}
+	var bet_amount = Number($(".betamount").val());
+	placebet(bet_amount,color_picked);
+});
+
+$(".betui").click(function(){
+	var currentvalue = Number($(".betamount").val());
+	if($(this).attr("name") == "max") {
+		$(".betamount").val(money);
+	}else if ($(this).attr("name") == "half"){
+
+	}else{
+		var add = Number($(this).attr("name"));
+		var resultz = currentvalue+add;
+		if(resultz <= money){
+			$(".betamount").val(resultz);
+		}
+	}
+});
+
+function requestFunds() {
+	socket.emit("requestFunds",UUID, function(data){
+		money = data;
+		$(".money").text(money);	
+	});
+}
+
+function gameActive() {
+	if(active) {
+		$(".red").find(".optionbutton").css("background-color","#330e0f");
+		$(".green").find(".optionbutton").css("background-color","#034622");
+		var winning_number = result.result[2].toString();
+		winning_number = parseInt(winning_number.replace(".",","));
+		console.log(winning_number);
+		roll(winning_number);
+	}else{
+		$(".red").find(".optionbutton").removeAttr('style');
+		$(".green").find(".optionbutton").removeAttr('style');
+	
+	}
+}
+
+
+function addResult() {
+	var elements = "";
+	for(var i = 0;i < pastResults.length;i++) {
+		elements += "<div class='pastResult "+getRouletteColor(pastResults[i][0])+"'>"+Math.floor(pastResults[i][2])+"</div>";
+	}
+	$(".pastResults").html(elements);
+}
+
+
+function showResult() {
+	result = result.result;
+	$(".countdown").html(getRouletteColor(result[0])+" WINS!");
+	$(".button").css("background",result[1]);
+	$(".button").css("border-color",result[1]);
+	saveGame();	
+
+	for(var i = 0;i < betArray.length;i++) {
+		if(betArray[i][1] == result[0]) {
+			$("."+getRouletteColor(betArray[i][1])).find(".amount").css("color","#07ab54");
+			if(result[0] == 2) {
+				money = money+(betArray[i][0]*14);
+				$(".GREEN").find(".amount").html(betArray[i][0]+" (+"+betArray[i][0]*14+"!)");
+			}else{
+				$("."+getRouletteColor(betArray[i][1])).find(".amount").html(betArray[i][0]+" (+"+betArray[i][0]*2+"!)");
+				money = money+(betArray[i][0]*2);
+			}
+			$(".money").text(money);	
+		}else{
+			$("."+getRouletteColor(betArray[i][1])).find(".amount").css("color","#D83D42");
+			$("."+getRouletteColor(betArray[i][1])).find(".amount").html(betArray[i][0]);
+		}
+	}
+	var entries = $(".flexoption."+getRouletteColor(result[0])+" .entry");
+	if(entries != null) {
+		soup = entries;
+		var modifier = 2;
+		for(var i = 0;i < entries.length; i++) {
+			var entry = entries[i];
+			var amount = parseInt($(entry).find(".table_bet_amount").text());
+			if(result[0] == 2)
+				modifier = 14;
+
+			$(entry).find(".table_bet_amount").text("+"+amount*modifier);
+		}
+	$(".flexoption tbody").css("color","#D83D42");
+	$(".flexoption."+getRouletteColor(result[0])+" tbody").css("color","#07ab54");
+	}
+}
+function roll(num) {
+  var numWidth = 1050/15;
+  roulette_scroll.play();
+  var layout = [1, 14, 2, 13, 3, 12, 4, 0, 11, 5, 10, 6, 9, 7, 8];
+
+  function getMoves() {
+    let to = layout.indexOf(num);
+    let at = layout.indexOf(currentNum);
+
+    if(to > at)
+      {return (to - at);}
+    else
+      {return (layout.length - at + to);}
+  }
+
+  var currentPos = parseInt($('.case .new').css( "background-position" ).split(" ")[0].slice(0, -2));
+
+  console.log(currentPos-3150-(getMoves()*numWidth));
+  currentPos ? null : currentPos = 0;
+  $('.case .new').animate({
+      "background-position": currentPos-3150-(getMoves()*numWidth),
+  }, animation_time, "easeOutQuad", function(){
+  	showResult();
+  });
+
+  currentNum = num;
+}
+function restorebutton() {
+	$(".button").css("background-color","#D83D42");
+	$(".button").css("border-color","#000");
+	$(".amount").css("color","yellow");
+	for(var i=0;i < betArray.length;i++) {
+		$("."+getRouletteColor(betArray[i][1])).find(".amount").html("0");
+	}		
+	betArray = [];
+	result = "";
+	console.log("emptying table");
+	$("tbody").html("");
+	$("tbody").removeAttr("style");
+	$(".total_value .int").text("0");
+	$(".user_count").text("0");
+	$(".amount").text("0");
+}
+
+function getRouletteColor(int) {
+	var color;
+	switch(int){
+		case 0:
+			color = "RED";
+			break;
+		case 1:
+			color = "BLACK";
+			break;
+		case 2:
+			color = "GREEN";
+			break;
+	}
+	return color;
+}
+function placebet(amount,color,user) {
+	if(amount > money || amount == 0 || active == true || isNaN(amount)) {
+		console.log("invalid bet");
+	}else{
+		money = money-amount;
+		$(".money").text(money);
+		socket.emit("placebet",{betvalue:amount,betcolor:color,bet_placer:UUID},function(data) {
+			updateAmount(amount,color);
+			socket.emit("getusername",UUID,function(data){
+				updateBetArray(amount,color,data);
+			});
+		});	
+	}
+}
+function insertActiveBets(data) {
+	var red_value = 0;
+	var green_value = 0;
+	var black_value = 0;
+	for(var i = 0; i < data.length; i++) {
+		var color = getRouletteColor(data[i][1]);
+		color = color.toLowerCase();
+		$(".flexoption."+color+" tbody").append("<tr class='entry'><td class='name'>"+data[i][2]+"</td><td class='table_bet_amount'>"+data[i][0]+"</td></tr>");
+		if(data[i][3] == UUID) {
+			updateAmount(data[i][0],data[i][1]);
+		}
+		if(data[i][1] == 0)
+			red_value += data[i][0];
+		if(data[i][1] == 1)
+			black_value += data[i][0];
+		if(data[i][1] == 2)
+			green_value += data[i][0];
+	}
+	console.log(red_value,green_value,black_value);
+
+}
+function insertBet(data) {
+	var color = getRouletteColor(data.color);
+	color = color.toLowerCase();
+
+	var current_users = parseInt($(".flexoption."+color+" .user_count").text());
+	var current_amount = parseInt($(".flexoption."+color+" .total_value .int").text());
+	var resultFound = false;
+
+	var entries = $(".flexoption."+color+" tbody").find(".entry");
+	if(entries.length == 0) {
+		$(".flexoption."+color+" tbody").append("<tr class='entry'><td class='name'>"+data.user+"</td><td class='table_bet_amount'>"+data.amount+"</td></tr>");
+		$(".flexoption."+color+" .user_count").text(current_users+1);
+		$(".flexoption."+color+" .total_value .int").text(current_amount+data.amount);
+	}else{
+		for(var i = 0;i < entries.length;i++ ){
+			var element = $(entries)[i];
+			var name = $(element).find(".name").text();
+			var amount = parseInt($(element).find(".table_bet_amount").text());
+			if(data.user == name) {
+				$(".flexoption."+color+" .total_value .int").text(current_amount+data.amount);
+				//user has an active bet
+				var new_amount = amount+data.amount;
+				$(element).find(".table_bet_amount").text(new_amount);
+				resultFound = true;
+				break;
+			}
+		}
+		if(!resultFound) {
+			$(".flexoption."+color+" tbody").append("<tr class='entry'><td class='name'>"+data.user+"</td><td class='table_bet_amount'>"+data.amount+"</td></tr>");
+			$(".flexoption."+color+" .user_count").text(current_users+1);
+			$(".flexoption."+color+" .total_value .int").text(current_amount+data.amount);
+
+		}
+	}
+}
+function updateBetArray(amount,color,user) {
+	var resultFound = false;
+	if(betArray.length == 0) {
+		var array_entry = [amount,color,user];
+		betArray.push(array_entry);
+	}else{
+		for(var i = 0;i < betArray.length;i++) {
+			if(color == betArray[i][1] && user == betArray[i][2]){
+				betArray[i][0] += amount;
+				resultFound = true;
+				break;
+			}
+		}
+		if(!resultFound) {
+			var array_entry = [amount,color,user];
+			betArray.push(array_entry);
+		}
+	}
+}
+function updateAmount(amount,color) {
+	var color_name = getRouletteColor(color);
+	var currentamount = parseInt($("."+color_name).find(".amount").html());
+
+	var newamount = currentamount+amount;
+	var modifier = 2;
+	if(color_name == "GREEN")
+		modifier=14;
+	$("."+color_name).find(".amount").html(newamount+" (Potential winnings: "+'<i class="fa fa-flash" aria-hidden="true"></i>'+newamount*modifier+")");
+}
+
+function saveGame() {
+	setCookie("coins",money,"31");
+	setCookie("pastResults",JSON.stringify(pastResults),"31");
+}
+function fillShop() {
+	for(var i=0;i < catalog.length;i++) {
+		var element = "<div style=background-image:url('assets/img/"+catalog[i][3]+"') name='"+catalog[i][0]+"' class='item'><div name='"+catalog[i][2]+"' class='item_price'>"+catalog[i][2]+"</div></div>";
+		$(".half.shop").append(element);
+	}
+}
+</script>
+</body>
+</html>
