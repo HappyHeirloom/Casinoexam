@@ -41,6 +41,7 @@ body {
 		flex-direction: column;
 		height: 50%;
 		width: 20%;
+		padding-left: 2%;
 	}
 
 	.coins { /* coin div style */
