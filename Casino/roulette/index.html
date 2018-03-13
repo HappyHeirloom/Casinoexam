@@ -103,7 +103,7 @@ function getResult() {
 var number = Math.floor(Math.random() * (14 - 0 +1)) + 0;
 if(number == 0) {
 	if (bet_amountgreen > 0) {
-		user_coins = parseInt(user_coins) + parseInt((bet_amount*14));
+		user_coins = parseInt(user_coins) + parseInt((bet_amountgreen*14));
 		updateCoins();
 	}
 	if (bet_amountred > 0) {
